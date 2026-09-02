@@ -1,16 +1,15 @@
+require("dotenv").config();
 const express = require("express");
 const mysql = require("mysql2");
 const app = express();
 const port = 3000;
 
-// Configuração da conexão com o banco de dados MySQL no contêiner Docker
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "user",
-  password: "userpassword",
-  database: "conversoes_db",
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
 });
-
 // Conectar ao banco de dados
 db.connect((err) => {
   if (err) {

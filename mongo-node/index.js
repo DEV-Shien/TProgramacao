@@ -1,11 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const { MongoClient } = require("mongodb");
 const app = express();
 const port = 3000;
 
-// Configuração da conexão com o MongoDB
-const mongoUrl = "mongodb://root:password@localhost:27017/conversoes_db?authSource=admin";
-const dbName = "conversoes_db";
+const mongoUrl = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}?authSource=admin`;
+const dbName = process.env.MONGO_DB;
 let db;
 
 // Conectar ao banco de dados
